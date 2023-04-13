@@ -4,24 +4,25 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function Square({value, onSquareClick}){
-
-  // const [value,setValue]= useState(null);
-
-  //   function handleClick(){
-  //   setValue('X');
-  // }
   return (
-  <button className="square" onClick={onSquareClick}>{value}</button>);
+  <button className="square" onClick={onSquareClick}>{value}</button>
+  );
 }
 
 function board() {
-
+  const[xIsNext, setXIsNext]= useState(true);
   const[squares,setSquares]=useState(Array(9).fill(null));
 
   function handleClick(i){
     const nexSquares= squares.slice();
+    if (xIsNext){
     nexSquares[i]="X";
+    }
+    else{
+      nexSquares[i]="O"
+    }
     setSquares(nexSquares)
+    setXIsNext(!xIsNext);
   }
 
   return (
